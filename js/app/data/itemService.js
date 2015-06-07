@@ -3,8 +3,8 @@ angular.module('data').service('itemService', function($http) {
   var baseUrl = 'http://dojo-analytics-api.elasticbeanstalk.com/api/v1/London'
 
   this.get = function(id) {
-  return $http.get( baseUrl + '/items', {params : {id: id}} ).then(function(response){
-		return response.data.items;
+  return $http.get( baseUrl + '/items/' + id ).then(function(response){
+		return response.data.item;
 	  })
       .catch(function(data, status, headers, config) {
       	alert("Erorr" + " --  " +data  + " --  " + status  + " --  " + headers   + " --  " + config);

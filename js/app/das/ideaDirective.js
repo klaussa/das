@@ -4,8 +4,11 @@
     restrict: 'E',
     replace: true,
     templateUrl: '/js/app/das/views/idea-directive.html',
+    scope: {
+        idea : '='
+    },
     link: function(scope, element, attr) {
-    		
+
     }
 
   }
