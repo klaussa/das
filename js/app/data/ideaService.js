@@ -5,64 +5,65 @@ angular.module('data').service('ideaService', function ($q, $http, itemService, 
     this.get = function (id) {
 
     }
-    this.clearCache = function(city){
+    this.clearCache = function (city) {
         cache[city] = {};
     };
     this.getList = function (city, params) {
-        if(cache[city] && Object.keys(cache[city]).length){
-           return $q.when(cache[city]);
-        };
+        if (cache[city] && Object.keys(cache[city]).length) {
+            return $q.when(cache[city]);
+        }
+        ;
 
 
+        return $http.get(baseUrl + city + '/ideas', {params: params}).then(function (response) {
 
-        return $http.get(baseUrl + city  + '/ideas', {params: params}).then(function (response) {
-
-            var ideas = response.data.ideas;
-
-
+            var ideas = response.data.ideas,
+                promises = [];
 
 
+            var temp;
             ideas.forEach(function (idea) {
-                idea.dates = idea.dates[idea.dates.length-1];
+                idea.dates = idea.dates[idea.dates.length - 1];
                 idea.dates.start_date = new Date(idea.dates.start_date);
                 idea.dates.end_date = new Date(idea.dates.end_date);
 
 
                 idea.items.forEach(function (item) {
-                    itemService.get(city, item.item_id).then(function (itemData) {
+                    promises.push(itemService.get(city, item.item_id).then(function (itemData) {
                         item.title = itemData.title;
-                    });
+                    }));
+
+                    //promises.push(itemService.getItemClicks(city, item.item_id, idea.dates.start_date, idea.dates.end_date).then(function (itemClicks) {
+                    //    item.clicks = itemClicks;
+                    //}));
                 });
 
-                dataService.getClicks(city,idea._id,
+
+                promises.push(dataService.getClicks(city, idea._id,
                     params.from,
                     params.to
-                ).then(function(clicksNumber){
+                ).then(function (clicksNumber) {
 
                         idea.clicksNumber = clicksNumber;
 
-                    });
+                    }));
             });
 
             cache[city] = ideas;
 
-            return ideas;
+            return $q.all(promises).then(function () {
+                return ideas;
+            });
         })
             .catch(function (data, status, headers, config) {
                 alert("Erorr" + " --  " + data + " --  " + status + " --  " + headers + " --  " + config);
             });
 
 
-
     };
 
 
-
-
 });
-
-
-
 
 
 // , { headers: {'dojo-secret': 'KlaussLovesDojo'}}
