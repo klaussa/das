@@ -29,9 +29,6 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
 
 
         $scope.currentCity = city;
-
-
-
     };
 
     $scope.changeCity('London');
