@@ -1,18 +1,53 @@
-<div class="col-md-10">
+<div class="col-md-10" style="position:relative">
+	<div class="loading" style="position:absolute;width:100%;height:100%;color:red;" ng-show="loadingState">
+		Loading
+	</div>
   
- 		<h1>Dashboard Idea Generators</h1>
+	<div class="row">
+		<div class="pull-left">
+			<h1>Dashboard Idea Generators</h1>
+		</div>
+		<div class="pull-right">
+			<a href="#" ng-click="resetData(currentCity)">Reset</a>
+			<a href="#" ng-repeat="city in ['London', 'Paris']" ng-click="changeCity(city)">{{city}}</a>
+		</div>
+	</div>
 
 <style>
 	ul.ideas{list-style: none;padding:0px;}
-	ul.ideas li{position: relative;margin: 10px;
+	ul.ideas li{position: relative;margin: 5px;
 	max-width:124px;float:left;position:relative;
-	border:1px solid grey;
-
-	}
+	border:1px solid grey;}
 	ul.ideas li a{position: absolute;background: black;color:white;padding:3px;width: 100%;}
+	.bar {
+		display: inline-block;
+
+		fill: teal;
+	}
+	.chartarea{background:lightgrey;overflow:hidden;}
+
 </style>
+
+
+	<div class="myform row">
+		<form>
+			<label for="id">ID</label>
+			<input type="text" ng-model="id"/>
+			<label for="datefrom">Date From</label>
+			<input type="text" ng-model="datefrom"/>
+			<label for="dateto">Date To</label>
+			<input type="text" ng-model="dateto"/>
+			<input type="submit" ng-click="takeData(id,datefrom,dateto)"/>
+		</form>
+	</div>
+
+
+
+	<div class="chartarea">
+		<bar-chart data="clicks"></bar-chart>
+	</div>
 	<ul class="ideas">		
-    <idea ng-repeat="idea in ideas" idea="idea"></idea>
+    <idea ng-repeat="idea in ideas | orderBy:'dates.start_date'" idea="idea" datefrom="datefrom" dateto="dateto"></idea>
 	</ul>
 
 </div><!--md-10 -->

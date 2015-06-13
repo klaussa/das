@@ -18,7 +18,5 @@ angular.module('DojoAnalyticsSuite').controller('DashboardAbstractController', f
   });
 
 
-
-
   //end of controller
 });
