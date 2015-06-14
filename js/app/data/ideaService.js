@@ -5,12 +5,30 @@ angular.module('data').service('ideaService', function ($q, $http, itemService, 
     this.get = function (id) {
 
     }
-    this.clearCache = function (city) {
-        cache[city] = {};
+    function getKey (city,datefrom,dateto){
+
+        var key = city + '/'+ datefrom.toString().slice(0,10) + '/' + dateto.toString().slice(0,10);
+        return key;
     };
+
+    this.clearCache = function (city,datefrom,dateto) {
+        cache[getKey(city,datefrom,dateto)] = {};
+    };
+
+    function setCache(city,datefrom,dateto,ideas){
+        console.log(getKey(city,datefrom,dateto));
+        cache[getKey(city,datefrom,dateto)] = ideas;
+    };
+    function getFromCache(city,datefrom,dateto){
+        var key = getKey(city,datefrom,dateto);
+        return (cache[key] && Object.keys(cache[key]).length)?cache[key]:null;
+    };
+
     this.getList = function (city, params) {
-        if (cache[city] && Object.keys(cache[city]).length) {
-            return $q.when(cache[city]);
+        var cachedIdeas = getFromCache(city, params.from, params.to);
+
+        if (cachedIdeas) {
+            return $q.when(cachedIdeas);
         }
         ;
 
@@ -20,8 +38,6 @@ angular.module('data').service('ideaService', function ($q, $http, itemService, 
             var ideas = response.data.ideas,
                 promises = [];
 
-
-            var temp;
             ideas.forEach(function (idea) {
                 idea.dates = idea.dates[idea.dates.length - 1];
                 idea.dates.start_date = new Date(idea.dates.start_date);
@@ -49,7 +65,7 @@ angular.module('data').service('ideaService', function ($q, $http, itemService, 
                     }));
             });
 
-            cache[city] = ideas;
+            setCache(city, params.from, params.to, ideas);
 
             return $q.all(promises).then(function () {
                 return ideas;
