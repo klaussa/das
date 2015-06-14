@@ -77,7 +77,7 @@ angular.module('DojoAnalyticsSuite').directive('barChart', function(){
         link: link,
         restrict: 'E',
         scope: { data: '=' }
-    }
+    };
 });
 
 
