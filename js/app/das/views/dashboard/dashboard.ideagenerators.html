@@ -31,13 +31,11 @@
 
 	<div class="myform row">
 		<form>
-			<label for="id">ID</label>
-			<input type="text" ng-model="id"/>
 			<label for="datefrom">Date From</label>
-			<input type="text" ng-model="datefrom"/>
+			<input type="date" ng-model="datefrom"/>
 			<label for="dateto">Date To</label>
-			<input type="text" ng-model="dateto"/>
-			<input type="submit" ng-click="takeData(id,datefrom,dateto)"/>
+			<input type="date" ng-model="dateto"/>
+			<input type="submit" value="Update Data" ng-click="updateData(datefrom,dateto)"/>
 		</form>
 	</div>
 

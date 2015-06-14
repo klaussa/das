@@ -1,5 +1,8 @@
-angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsController', function ($scope, $interval, ideaService, dataService,itemService) {
+angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsController', function ($scope, $interval, ideaService, dataService,itemService,helperService) {
 
+
+    $scope.datefrom = helperService.getCurrentDate();
+    $scope.dateto =  helperService.getNextWeekDate();
     $scope.loadingState = false;
 
     $scope.currentCity = 'London';
@@ -10,8 +13,8 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
             'limit': '70',
             'published': true,
             'sort':'dates.start_date',
-            'from': new Date('2015-06-08T00:00:00'),
-            'to': new Date((new Date()).setDate((new Date()).getDate() + 7))
+            'from': $scope.datefrom,
+            'to': $scope.dateto
         }).then(function (ideas) {
             $scope.ideas = ideas;
 
@@ -35,12 +38,20 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
 
 
     $scope.resetData = function(){
-        ideaService.clearCache($scope.currentCity);
+        ideaService.clearCache($scope.currentCity,$scope.datefrom,$scope.dateto);
         $scope.changeCity($scope.currentCity);
+
     };
 
-    $scope.datefrom = new Date('2015-06-08T00:00:00');
-    $scope.dateto = new Date((new Date()).setDate((new Date()).getDate() + 7));
+
+
+
+    $scope.updateData = function(datefrom,dateto){
+        $scope.datefrom = new Date(datefrom);
+        $scope.dateto = new Date(dateto);
+        $scope.resetData();
+
+    };
 
 
     //$scope.id="5501b1648ef0b4eccc41813a";
