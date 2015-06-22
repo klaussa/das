@@ -1,0 +1,19 @@
+<div class="col-md-10" style="position:relative">
+    <div class="col-md-3">
+        <h4>{{idea.name}}</h4>
+        <img src="{{idea.image_url}}" class="img-responsive"alt=""/>
+        <p><strong>ID: </strong> {{idea._id}}</p>
+    </div>
+    <div class="col-md-9">
+        <h4>{{idea.clicksNumber}}  Clicks - All Time - {{currentCity}}</h4>
+
+        <div class="map">
+            <!--<map zoom="13" center="51.5247969, -0.1407374" map-type-id="TERRAIN" style="height:500px;">
+                <marker ng-repeat="item in coordinates" doCluster="map.doCluster" position="{{item[0]}},{{item[1]}}" title="Hello World!"></marker>
+            </map> -->
+            <clustered-map markers="coordinates"  zoom="9"  center="{ x: 51.5247969,y: -0.1407374}"></clustered-map>
+
+            <p>The map holds data of recent users clicking on the specific idea. The users are recent active users from the <b>current day</b> pool.</p>
+        </div>
+    </div>
+</div><!-- end of col-md- 10>

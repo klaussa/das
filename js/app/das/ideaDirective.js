@@ -11,12 +11,13 @@
     },
     link: function(scope, element, attr) {
 
-        scope.idea.items.forEach(function(item) {
-            itemService.getItemClicks('London',item.idem_id,scope.datefrom,scope.dateto).then(function(response){
-                item.clicks = response;
-                console.log(response);
-            });
-        });
+        //scope.idea.items.forEach(function(item) {
+        //    itemService.getItemClicks('London',item.item_id,scope.datefrom,scope.dateto).then(function(response){
+        //
+        //        item.clicks = response;
+        //
+        //    });
+        //});
     }
 
   }

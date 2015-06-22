@@ -15,6 +15,19 @@ angular.module('data').service('dataService', function ($http) {
             count: true
         }}).then(function(result){
             return result.data.count;
+        });
+    };
+
+    this.getCoords = function (city,ideaId, timeStart, timeEnd) {
+
+        return $http.get(baseUrl + city +  '/datas', {params: {
+            data_type: 'idea click',
+            idea_ids: ideaId,
+            from: timeStart.toISOString(),
+            to : timeEnd.toISOString(),
+        }}).then(function(result){
+            debugger
+            return result.data.loc;
         } );
     };
 });

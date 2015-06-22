@@ -16,7 +16,7 @@ angular.module('data').service('itemService', function ($http) {
 
         return $http.get(baseUrl + city + '/datas', {params: {
             data_type: 'item click',
-            items_id: id,
+            item_ids: id,
             from: datefrom.toISOString(),
             to: dateto.toISOString(),
             count: 'true'
