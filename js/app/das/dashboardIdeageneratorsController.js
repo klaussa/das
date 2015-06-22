@@ -1,4 +1,4 @@
-angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsController', function ($scope, $interval, ideaService, dataService,itemService,helperService) {
+angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsController', function ($scope, $interval, ideaService, dataService,itemService, userSession, helperService, $http) {
 
 
     $scope.datefrom = helperService.getCurrentDate();
@@ -20,10 +20,10 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
 
 
 
-            $scope.clicks = [];
-            $scope.ideas.forEach(function(idea){
-                $scope.clicks.push(idea.clicksNumber);
-            });
+            //$scope.clicks = [];
+            //$scope.ideas.forEach(function(idea){
+            //    $scope.clicks.push(idea.clicksNumber);
+            //});
             $scope.loadingState = false;
 
         }).catch(function (error) {
@@ -43,8 +43,10 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
 
     };
 
-
-
+    var heatmap;
+    $scope.$on('mapInitialized', function(event, map) {
+        heatmap = map.heatmapLayers.foo;
+    });
 
     $scope.updateData = function(datefrom,dateto){
         $scope.datefrom = new Date(datefrom);
@@ -54,19 +56,36 @@ angular.module('DojoAnalyticsSuite').controller('DashboardIdeageneratorsControll
     };
 
 
-    //$scope.id="5501b1648ef0b4eccc41813a";
-    //$scope.datefrom="2015-06-05T00:00:00.000Z";
-    //$scope.dateto="2015-06-06T00:00:00.000Z";
+
+
+
+
+
+    //$scope.things.datas.forEach(function(data){
+    //    $scope.taxiData.push(new google.maps.LatLng(data.loc.coordinates[1], data.loc.coordinates[0]))
+    //});
+
+    //5579f4245864f34408dd2f5f
+    //55200aa755cf2b9b06421a65
+
     //
+    //var numbers = [];
+    //var url = "http://dojo-analytics-api.elasticbeanstalk.com/api/v1/London/datas?&from=2015-06-22T01:00:25.696Z&to=2015-06-22T08:00:25.696Z&data_type=idea%20click&limit=100&distinct=user_id";
+    //$http.get(url).then(function(response){
+    //  response.data.datas.forEach(function(el){
+    //      userSession.getUserSessions(el).then(function(reply){
+    //    console.log(reply[2]);
+    //      })
+    //   });
+    //  //  $scope.avgclicks = number / response.data.datas.length;
     //
-    //$scope.takeData = function(id,datefrom,dateto){
-    //    var actualdate = new Date(datefrom);
-    //    var enddate =  new Date(dateto)
-    //    itemService.getItemClicks('London',id,actualdate,enddate).then(function(response){
-    //       console.log(response);
-    //    });
-    //
-    //};
+    //});
+
+
+   // userSession.getUserSessions('5579f4245864f34408dd2f5f').then(function(reply){
+   //     $scope.sessions = reply;
+   //});
+
 
     //end of controller
 });

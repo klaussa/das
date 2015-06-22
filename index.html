@@ -3,28 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Dojo Analytics Suite</title>
+ <!--   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
     <!-- Latest compiled and minified CSS -->
+    <base href="/" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <style type="text/css">
-        body {
-            padding-top: 60px;
-        }
 
-        .navbar-brand img {
-            max-width: 50px;
-        }
-
-        .navbar-inverse {
-            background: black;
-        }
-
-        .navbar-inverse .navbar-nav > li.active > a {
-            background: red;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="GeneralController">
 
@@ -57,29 +45,35 @@
 <!-- Content -->
 <div class="container-fluid">
     <div class="row">
-
         <div ui-view></div>
-
-
     </div>
     <!--row -->
 </div>
 <!--container fluid -->
 
+
+
+
+
 <!-- JavaScript Includes -->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=visualization"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
+
+
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/d3/d3.js" charset="utf-8"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+<script src="bower_components/ng-clustered-map/dist/ng-clustered-map.js"></script>
 
 <!--DATA MODULE -->
-
-
 <script type="text/javascript" src="js/app/data/_data.js"></script>
 <script type="text/javascript" src="js/app/data/_config.js"></script>
 <script type="text/javascript" src="js/app/data/ideaService.js"></script>
 <script type="text/javascript" src="js/app/data/itemService.js"></script>
 <script type="text/javascript" src="js/app/data/dataService.js"></script>
-
 
 <!--Main Module -->
 <script type="text/javascript" src="js/app/das/_das.js"></script>
@@ -93,6 +87,7 @@
 <script type="text/javascript" src="js/app/das/dashboardAbstractController.js"></script>
 <script type="text/javascript" src="js/app/das/dashboardIdeageneratorsController.js"></script>
 <script type="text/javascript" src="js/app/das/dashboardIndexController.js"></script>
+<script type="text/javascript" src="js/app/das/dashboardIdeaController.js"></script>
 <!--Content -->
 
 <script type="text/javascript" src="js/app/das/contentAbstractController.js"></script>
@@ -102,6 +97,7 @@
 <!-- SERVICES -->
 <script type="text/javascript" src="js/app/das/helperService.js"></script>
 
+<script type="text/javascript" src="js/app/data/userSession.js"></script>
 
 <!--DIRECTIVES -->
 

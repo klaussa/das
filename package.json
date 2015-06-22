@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/euandrei/das#readme",
   "devDependencies": {
+    "bootstrap": "^3.3.4",
     "bower": "^1.4.1",
     "express": "^4.12.4",
     "grunt": "^0.4.5"

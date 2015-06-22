@@ -9,6 +9,12 @@
   "devDependencies": {
     "angular": "~1.4.0",
     "angular-ui-router": "~0.2.15",
-    "d3": "~3.5.5"
-  }
+    "d3": "~3.5.5",
+    "bootstrap": "~3.3.4",
+    "angular-google-maps": "~2.1.5",
+    "lodash": "~3.9.3",
+    "ngmap": "~1.7.11",
+    "ng-clustered-map": "*"
+  },
+  "dependencies": {}
 }
