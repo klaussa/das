@@ -1,5 +1,27 @@
 {
-	"dependencies":{
-		"express":"latest"
-	}
+  "name": "das",
+  "version": "1.0.0",
+  "description": "Dojo Analytics Suite",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euandrei/das.git"
+  },
+  "author": "klauss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euandrei/das/issues"
+  },
+  "homepage": "https://github.com/euandrei/das#readme",
+  "devDependencies": {
+    "bootstrap": "^3.3.4",
+    "bower": "^1.4.1",
+    "express": "^4.12.4",
+    "grunt": "^0.4.5",
+    "mongoose": "^4.0.6"
+  }
 }

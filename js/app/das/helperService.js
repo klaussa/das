@@ -2,7 +2,7 @@
  * Created by klauss on 13/06/2015.
  */
 angular.module('DojoAnalyticsSuite').service('helperService', function () {
-
+    var currentCity;
     this.getCurrentDate = function(){
         var dateFrom = new Date();
         dateFrom.setUTCHours(0);
@@ -18,6 +18,15 @@ angular.module('DojoAnalyticsSuite').service('helperService', function () {
         nextWeekDate = new Date(nextWeekDate.setDate(today.getDate() + 7));
         return nextWeekDate;
 
+    };
+
+
+    this.setCurrentCity = function(city){
+         currentCity = city;
+
+    };
+    this.getCurrentCity = function(){
+        return currentCity;
     };
 
 });

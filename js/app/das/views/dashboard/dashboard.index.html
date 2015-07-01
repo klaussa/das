@@ -4,8 +4,28 @@
 
 
  <div class="row">
- 	
-	Testing Stuff - index state for dashboard
+     <div class="col-md-6">
+         <h4>London</h4>
+         Aprox. <strong>{{numbers}}</strong>  Users In the App at the moment
+         {{tableData}}
+        <my-directive info="tableData"></my-directive>
+         <div class="actives">
+            <!--<my-directive info="tableData"></my-directive>-->
+        {{dailyActive}}
+
+         </div>
+
+     </div>
+	<div class="col-md-6">
+
+            <h4>Paris</h4>
+            Aprox. <strong>{{parisData}}</strong>  Users In the App at the moment
+
+        <div class="actives">
+            {{dailyParis}}
+        </div>
+
+    </div>
  </div><!--row -->
 	
 

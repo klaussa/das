@@ -1,6 +1,6 @@
 angular.module('data').service('itemService', function ($http) {
     // Stepan was here
-    var baseUrl = 'http://dojo-analytics-api.elasticbeanstalk.com/api/v1/'
+    var baseUrl = 'http://dojo-analytics-api.elasticbeanstalk.com/api/v1/';
 
     this.get = function (city, id) {
 
@@ -16,7 +16,7 @@ angular.module('data').service('itemService', function ($http) {
 
         return $http.get(baseUrl + city + '/datas', {params: {
             data_type: 'item click',
-            items_id: id,
+            item_ids: id,
             from: datefrom.toISOString(),
             to: dateto.toISOString(),
             count: 'true'
